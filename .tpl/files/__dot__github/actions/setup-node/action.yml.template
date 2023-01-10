@@ -1,0 +1,33 @@
+name: "Setup Node"
+description: "Setup node, pnpm and install dependencies"
+
+inputs:
+  pnpmVersion:
+    description: "The version of pnpm to install"
+    required: false
+    default: "<%= versions.PNPM %>"
+  nodeVersion:
+    description: "The version of NodeJs to install"
+    required: false
+    default: "<%= versions.NODEJS %>"
+
+runs:
+  using: "composite"
+  steps:
+    - uses: pnpm/action-setup@v<%= versions.PNPM_ACTION_SETUP %>
+      with:
+        version: ${{ inputs.pnpmVersion }}
+        run_install: false
+
+    - uses: actions/setup-node@v<%= versions.GITHUB_ACTIONS_SETUP_NODE %>
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
+      with:
+        node-version: ${{ inputs.nodeVersion }}
+        cache: "pnpm"
+        cache-dependency-path: pnpm-lock.yaml
+
+    - run: pnpm install --ignore-scripts --frozen-lockfile
+      shell: bash
+      env:
+        GITHUB_TOKEN: ${{ github.token }}

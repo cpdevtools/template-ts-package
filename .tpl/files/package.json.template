@@ -1,0 +1,55 @@
+{
+  "private": true,
+  "name": "<%= package.name %>",
+  "version": "0.0.0-dev.0",
+  "repository": "<%= package.repository %>",
+  "license": "",
+  "author": "",
+  "keywords": [],
+  "description": "",
+  "scripts": {
+    "prepare": "run-s prepare:*",
+    "prepare:clean-tags": "pnpm run clean-tags",
+    "prepare:husky": "husky install",
+    "prepare:build": "pnpm run build",
+    "pre-commit": "run-s pre-commit:*",
+    "pre-commit:build": "pnpm run build",
+    "pre-commit:tags": "pnpm run clean-tags",
+    "clean-tags": "git tag | xargs git tag -d",
+    "build": "tsc -p .schematic/tsconfig.json",
+    "test": "schematics .:initialize",
+    "reset-hard": "run-s reset-hard:*",
+    "reset-hard:git-clean": "git clean -dfx && git reset --hard",
+    "reset-hard:install": "pnpm install",
+    "start": "tsc -w -p .schematic/tsconfig.json",
+    "fix": "run-s fix:*",
+    "fix:prettier": "prettier --write --ignore-unknown .",
+    "actions-test": "pnpm run test",
+    "actions-build": "pnpm run build"
+  },
+  "schematics": ".schematic/collection.json",
+  "lint-staged": {
+    "*": "prettier --write --ignore-unknown"
+  },
+  "devDependencies": {
+    "@angular-devkit/schematics": "<%= versions.ANGULAR_DEVKIT_SCHEMATICS %>",
+    "@angular-devkit/schematics-cli": "<%= versions.ANGULAR_DEVKIT_SCHEMATICS %>",
+    "@cpdevtools/lib-node-utilities": "<%= versions.CPDEVTOOLS_NODE_UTILITIES %>",
+    "@types/node": "<%= versions.TYPES_NODE %>",
+    "@vercel/ncc": "<%= versions.VERCEL_NCC %>",
+    "husky": "<%= versions.HUSKY %>",
+    "lint-staged": "<%= versions.LINT_STAGED %>",
+    "npm-run-all2": "<%= versions.NPM_RUN_ALL_2 %>",
+    "prettier": "<%= versions.PRETTIER %>",
+    "type-fest": "<%= versions.TYPE_FEST %>",
+    "typescript": "<%= versions.TYPESCRIPT %>"
+  },
+  "package-template": {
+    "scripts": {
+      "prepare": "run-s prepare:*",
+      "prepare:build": "tsc -p .schematic/tsconfig.json",
+      "prepare:initialize": "schematics .:initialize --debug=false"
+    }
+  },
+  "fromTemplate": <%= strings.json(package.fromTemplate, 2) %>
+}

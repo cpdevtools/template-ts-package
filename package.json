@@ -1,0 +1,49 @@
+{
+  "name": "@cpdevtools/template-generate-template",
+  "repository": "https://github.com/cpdevtools/template-generate-template",
+  "version": "0.0.1-dev.1",
+  "scripts": {
+    "prepare": "run-s prepare:*",
+    "prepare:clean-tags": "pnpm run clean-tags",
+    "prepare:husky": "husky install",
+    "prepare:build": "pnpm run build",
+    "pre-commit": "run-s pre-commit:*",
+    "pre-commit:build": "pnpm run build",
+    "pre-commit:tags": "pnpm run clean-tags",
+    "clean-tags": "git tag | xargs git tag -d",
+    "build": "tsc -p .schematic/tsconfig.json",
+    "test": "schematics .:initialize --template-path=.template",
+    "reset-hard": "run-s reset-hard:*",
+    "reset-hard:git-clean": "git clean -dfx && git reset --hard",
+    "reset-hard:install": "pnpm install",
+    "start": "tsc -w -p .schematic/tsconfig.json",
+    "fix": "run-s fix:*",
+    "fix:prettier": "prettier --write --ignore-unknown .",
+    "actions-test": "pnpm run test",
+    "actions-build": "pnpm run build"
+  },
+  "schematics": ".schematic/collection.json",
+  "lint-staged": {
+    "*": "prettier --write --ignore-unknown"
+  },
+  "devDependencies": {
+    "@angular-devkit/schematics": "15.0.4",
+    "@angular-devkit/schematics-cli": "15.0.4",
+    "@cpdevtools/lib-node-utilities": "0.4.49",
+    "@types/node": "18.11.18",
+    "husky": "8.0.2",
+    "lint-staged": "13.1.0",
+    "npm-run-all2": "6.0.4",
+    "prettier": "2.8.1",
+    "type-fest": "3.5.0",
+    "typescript": "4.9.4"
+  },
+  "package-template": {
+    "scripts": {
+      "prepare": "run-s prepare:*",
+      "prepare:build": "tsc -p .schematic/tsconfig.json",
+      "prepare:initialize": "pnpm run schematics && pnpm i && git add --all && git commit -a -m \"template initialized\"",
+      "schematics": "schematics .:initialize --debug=false --template-path=.tpl"
+    }
+  }
+}

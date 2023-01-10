@@ -1,0 +1,7 @@
+# Dependency directory
+node_modules
+
+# Compiles schematics
+.schematic/**/*.js
+.schematic/**/*.js.map
+.schematic/**/*.d.ts

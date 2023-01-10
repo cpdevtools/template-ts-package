@@ -1,0 +1,21 @@
+{
+  "ANGULAR_DEVKIT_SCHEMATICS": "<%= versions.ANGULAR_DEVKIT_SCHEMATICS %>",
+  "CPDEVTOOLS_ACTION_VERSIONS": "<%= versions.CPDEVTOOLS_ACTION_VERSIONS %>",
+  "CPDEVTOOLS_ACTION_TEMPLATE": "<%= versions.CPDEVTOOLS_ACTION_TEMPLATE %>",
+  "CPDEVTOOLS_NODE_UTILITIES": "<%= versions.CPDEVTOOLS_NODE_UTILITIES %>",
+  "GITHUB_ACTIONS_CORE": "<%= versions.GITHUB_ACTIONS_CORE %>",
+  "GITHUB_ACTIONS_CHECKOUT": "<%= versions.GITHUB_ACTIONS_CHECKOUT %>",
+  "GITHUB_ACTIONS_SETUP_NODE": "<%= versions.GITHUB_ACTIONS_SETUP_NODE %>",
+  "HUSKY": "<%= versions.HUSKY %>",
+  "LINT_STAGED": "<%= versions.LINT_STAGED %>",
+  "NODEJS": "<%= versions.NODEJS %>",
+  "NODEJS_MAJOR": "<%= versions.NODEJS_MAJOR %>",
+  "NPM_RUN_ALL_2": "<%= versions.NPM_RUN_ALL_2 %>",
+  "PNPM": "<%= versions.PNPM %>",
+  "PNPM_ACTION_SETUP": "<%= versions.PNPM_ACTION_SETUP %>",
+  "PRETTIER": "<%= versions.PRETTIER %>",
+  "TYPE_FEST": "<%= versions.TYPE_FEST %>",
+  "TYPES_NODE": "<%= versions.TYPES_NODE %>",
+  "TYPESCRIPT": "<%= versions.TYPESCRIPT %>",
+  "VERCEL_NCC": "<%= versions.VERCEL_NCC %>"
+}

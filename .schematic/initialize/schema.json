@@ -1,0 +1,18 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "Options",
+  "title": "Options",
+  "type": "object",
+  "properties": {
+    "templatePath": {
+      "description": "The path to the source template",
+      "type": "string",
+      "default": ".template"
+    },
+    "finalize": {
+      "description": "clean up template files",
+      "type": "boolean",
+      "default": true
+    }
+  }
+}
