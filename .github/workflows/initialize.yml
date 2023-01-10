@@ -10,9 +10,9 @@ jobs:
   publish:
     name: Initialize Template
     runs-on: ubuntu-latest
-    if: ${{ github.repository != 'cpdevtools/template-generate-template' }}
+    if: ${{ github.repository != 'cpdevtools/template-ts-package' }}
     steps:
-      - uses: actions/checkout@v3
-      - uses: cpdevtools/action-template@dev
+      - uses: actions/checkout@v3.1.0
+      - uses: cpdevtools/action-template@v0.0.1-dev.11
         with:
           action: init-tpl

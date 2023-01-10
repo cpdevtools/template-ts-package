@@ -18,49 +18,22 @@ import { existsSync } from "fs";
 import type { PackageJson } from "type-fest";
 import { NodePackageInstallTask } from "@angular-devkit/schematics/tasks";
 
-export interface Options {
+export interface Args {
   templatePath: string;
   finalize: boolean;
 }
 
-function generateTemplate(options: Options) {
-  return async () => {
-    let templatePath = Path.normalize(options.templatePath);
-    if (!templatePath.startsWith("/")) {
-      templatePath = Path.join(process.cwd(), templatePath);
-    }
-
-    let data = (await readDataFile(Path.join(templatePath, "options"))) ?? {};
-    let versions = (await readDataFile(Path.join(templatePath, "versions"))) ?? {};
-
-    const tplOpts: any = {
-      ...data,
-      dot: ".",
-      strings: {
-        ...strings,
-        lower: (str: string) => str.toLowerCase(),
-        upper: (str: string) => str.toUpperCase(),
-        json: (obj: any, indent?: number) => JSON.stringify(obj, undefined, indent),
-      },
-      versions,
-    };
-
-    const packagePath = Path.join(process.cwd(), "package.json");
-    const pkg = existsSync(packagePath) ? ((await readJsonFile(packagePath)) as PackageJson) : null;
-    if (pkg) {
-      tplOpts.package = pkg;
-
-      const p = pkg.name?.split("/");
-      const repoOwner = p?.shift()?.slice(1);
-      const repoName = p?.join("/");
-      tplOpts.repo = {
-        owner: repoOwner,
-        name: repoName,
-      };
-    }
-
-    return mergeWith(apply(url(Path.join(templatePath, "files")), [template(tplOpts), renameTemplateFiles()]));
+export interface Options extends Args {
+  templatePath: string;
+  dot: ".";
+  strings: typeof strings & {
+    lower: (str: string) => string;
+    upper: (str: string) => string;
+    json: (str: string) => string;
   };
+  versions: Record<string, string>;
+  package?: PackageJson;
+  [key: string | number]: unknown;
 }
 
 async function readDataFile<T = unknown>(dataPath: string) {
@@ -81,22 +54,50 @@ async function readDataFile<T = unknown>(dataPath: string) {
   return undefined;
 }
 
-function cleanDest(_: Options) {
-  return async (tree: Tree, _: SchematicContext) => {
-    const dir = tree.getDir(".");
-    dir.subdirs.forEach((d) => d === ".git" || tree.delete(d));
-    dir.subfiles.forEach((d) => tree.delete(d));
+async function getOptions(args: Args) {
+  let templatePath = Path.normalize(args.templatePath);
+
+  if (!templatePath.startsWith("/")) {
+    templatePath = Path.join(process.cwd(), templatePath);
+  }
+
+  const packagePath = Path.join(process.cwd(), "package.json");
+
+  let data = (await readDataFile(Path.join(templatePath, "options"))) ?? {};
+  let versions = ((await readDataFile(Path.join(templatePath, "versions"))) ?? {}) as Record<string, string>;
+  const tplOpts: Options = {
+    ...args,
+    ...data,
+    dot: ".",
+    strings: {
+      ...strings,
+      lower: (str: string) => str.toLowerCase(),
+      upper: (str: string) => str.toUpperCase(),
+      json: (obj: any, indent?: number) => JSON.stringify(obj, undefined, indent),
+    },
+    versions,
+    templatePath,
   };
+
+  const pkg = existsSync(packagePath) ? ((await readJsonFile(packagePath)) as PackageJson) : null;
+  if (pkg) {
+    tplOpts.package = pkg;
+
+    const p = pkg.name?.split("/");
+    const repoOwner = p?.shift()?.slice(1);
+    const repoName = p?.join("/");
+    tplOpts.repo = {
+      owner: repoOwner,
+      name: repoName,
+    };
+  }
+  return tplOpts;
 }
 
-export function initialize(options: Options): Rule {
-  const rules: Rule[] = [];
-
-  rules.push(cleanGenerator(options));
-  rules.push(mergeWith(apply(empty(), [generateTemplate(options)]), MergeStrategy.Overwrite));
-  rules.push(installPnpm(options));
-
-  return chain(rules);
+function generateTemplate(options: Options) {
+  return async () => {
+    return mergeWith(apply(url(Path.join(options.templatePath, "files")), [template(options), renameTemplateFiles()]));
+  };
 }
 
 function cleanGenerator(opts: Options) {
@@ -116,6 +117,7 @@ function cleanGenerator(opts: Options) {
     }
   };
 }
+
 function installPnpm(opts: Options) {
   return async (_tree: Tree, context: SchematicContext) => {
     const installTaskId = context.addTask(
@@ -123,5 +125,17 @@ function installPnpm(opts: Options) {
         packageManager: "pnpm",
       })
     );
+  };
+}
+
+export function initialize(options: Args): Rule {
+  return async (tree: Tree, _: SchematicContext) => {
+    const rules: Rule[] = [];
+    const tplOpts = await getOptions(options);
+    rules.push(cleanGenerator(tplOpts));
+    rules.push(mergeWith(apply(empty(), [generateTemplate(tplOpts)]), MergeStrategy.Overwrite));
+    rules.push(installPnpm(tplOpts));
+
+    return chain(rules);
   };
 }

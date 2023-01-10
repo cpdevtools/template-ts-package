@@ -9,10 +9,10 @@ jobs:
   publish:
     name: Test
     runs-on: ubuntu-latest
-    if: ${{ github.repository == 'cpdevtools/template-generate-template' }}
+    if: ${{ github.repository == 'cpdevtools/template-ts-package' }}
     steps:
       - name: Checkout Project
-        uses: actions/checkout@v3.2.0
+        uses: actions/checkout@v3.1.0
 
       - name: Install Node & Dependencies
         uses: ./.github/actions/setup-node

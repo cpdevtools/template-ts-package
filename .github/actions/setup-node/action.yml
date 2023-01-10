@@ -9,7 +9,7 @@ inputs:
   nodeVersion:
     description: "The version of NodeJs to install"
     required: false
-    default: "16.18.x"
+    default: "16.18.1"
 
 runs:
   using: "composite"

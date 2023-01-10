@@ -5,11 +5,12 @@ specifiers:
   "@angular-devkit/schematics-cli": 15.0.4
   "@cpdevtools/lib-node-utilities": 0.4.49
   "@types/node": 18.11.18
-  husky: 8.0.2
+  "@vercel/ncc": 0.36.0
+  husky: 8.0.3
   lint-staged: 13.1.0
   npm-run-all2: 6.0.4
   prettier: 2.8.1
-  type-fest: 3.5.0
+  type-fest: 3.5.1
   typescript: 4.9.4
 
 devDependencies:
@@ -17,11 +18,12 @@ devDependencies:
   "@angular-devkit/schematics-cli": 15.0.4
   "@cpdevtools/lib-node-utilities": 0.4.49
   "@types/node": 18.11.18
-  husky: 8.0.2
+  "@vercel/ncc": 0.36.0
+  husky: 8.0.3
   lint-staged: 13.1.0
   npm-run-all2: 6.0.4
   prettier: 2.8.1
-  type-fest: 3.5.0
+  type-fest: 3.5.1
   typescript: 4.9.4
 
 packages:
@@ -348,6 +350,11 @@ packages:
     resolution: { integrity: sha512-Gj7cI7z+98M282Tqmp2K5EIsoouUEzbBJhQQzDE3jSIRk6r9gsz0oUokqIUR4u1R3dMHo0pDHM7sNOHyhulypw== }
     dev: true
 
+  /@vercel/ncc/0.36.0:
+    resolution: { integrity: sha512-/ZTUJ/ZkRt694k7KJNimgmHjtQcRuVwsST2Z6XfYveQIuBbHR+EqkTc1jfgPkQmMyk/vtpxo3nVxe8CNuau86A== }
+    hasBin: true
+    dev: true
+
   /acorn-walk/8.2.0:
     resolution: { integrity: sha512-k+iyHEuPgSw6SbuDpGQM+06HQUa04DZ3o+F6CSzXMvvI5KMvnaEqXe+YVe555R9nn6GPt404fos4wcgpw12SDA== }
     engines: { node: ">=0.4.0" }
@@ -408,7 +415,7 @@ packages:
     resolution: { integrity: sha512-IG23inYII3dWlU2EyiAiGj6Bwal5GzsgPMwjYGvc1HPE2dgbj4ZB5ToWBKSquKw74nB3TIuOwaI6/jSULzfgrw== }
     engines: { node: ">=14.16" }
     dependencies:
-      type-fest: 3.5.0
+      type-fest: 3.5.1
     dev: true
 
   /ansi-regex/5.0.1:
@@ -901,8 +908,8 @@ packages:
     engines: { node: ">=12.20.0" }
     dev: true
 
-  /husky/8.0.2:
-    resolution: { integrity: sha512-Tkv80jtvbnkK3mYWxPZePGFpQ/tT3HNSs/sasF9P2YfkMezDl3ON37YN6jUUI4eTg5LcyVynlb6r4eyvOmspvg== }
+  /husky/8.0.3:
+    resolution: { integrity: sha512-+dQSyqPh4x1hlO1swXBiNb2HzTDN1I2IGLQx1GrBuiqFJfoMrnZWwVmatvSiO+Iz8fBUnf+lekwNo4c2LlXItg== }
     engines: { node: ">=14" }
     hasBin: true
     dev: true
@@ -1839,8 +1846,8 @@ packages:
     engines: { node: ">=12.20" }
     dev: true
 
-  /type-fest/3.5.0:
-    resolution: { integrity: sha512-bI3zRmZC8K0tUz1HjbIOAGQwR2CoPQG68N5IF7gm0LBl8QSNXzkmaWnkWccCUL5uG9mCsp4sBwC8SBrNSISWew== }
+  /type-fest/3.5.1:
+    resolution: { integrity: sha512-70T99cpILFk2fzwuljwWxmazSphFrdOe3gRHbp6bqs71pxFBbJwFqnmkLO2lQL6aLHxHmYAnP/sL+AJWpT70jA== }
     engines: { node: ">=14.16" }
     dev: true
 
