@@ -112,7 +112,7 @@ function cleanGenerator(opts: Options) {
       try {
         tree.delete(".schematic");
         tree.delete(".template");
-        tree.delete(".github/workflows/initialize.yml");
+        tree.delete(".github/workflows");
       } catch {}
     }
   };

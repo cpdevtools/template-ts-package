@@ -1,0 +1,47 @@
+name: Publish Node Package
+
+on:
+  push:
+    branches:
+      - "release/*"
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Project
+        uses: actions/checkout@v<%= versions.GITHUB_ACTIONS_CHECKOUT %>
+      - name: Check Version
+        uses: ./.github/actions/check-version
+
+  publish:
+    runs-on: ubuntu-latest
+    needs: setup
+    steps:
+      - name: Checkout Project
+        uses: actions/checkout@v<%= versions.GITHUB_ACTIONS_CHECKOUT %>
+
+      - name: Install Node & Dependencies
+        uses: ./.github/actions/setup-node
+
+      - name: Build
+        uses: ./.github/actions/build
+
+      - name: Pack
+        uses: ./.github/actions/pack
+
+      - name: Publish
+        uses: ./.github/actions/publish-node-package
+        with:
+          toNpm: false
+          toGithub: true
+
+  create-release:
+    runs-on: ubuntu-latest
+    needs: publish
+    steps:
+      - name: Checkout Project
+        uses: actions/checkout@v<%= versions.GITHUB_ACTIONS_CHECKOUT %>
+
+      - name: Create Release
+        uses: ./.github/actions/create-release

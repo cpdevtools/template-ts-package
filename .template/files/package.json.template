@@ -33,14 +33,13 @@
     "reset-hard:git-clean": "git clean -dfx && git reset --hard",
     "reset-hard:install": "pnpm install",
     "pack": "run-s pack:*",
-    "pack:build": "pnpm run build",
     "pack:npm-pack": "cd dist && mkdir ./pack && pnpm pack --pack-destination ./pack",
     "release": "run-s release:*",
     "release:publish": "pnpm publish ./dist --access public --publish-branch 'release/latest'",
     "actions-test": "pnpm run test",
     "actions-build": "pnpm run build",
-    "actions-pack": "pnpm run test",
-    "actions-publish": "pnpm run build"
+    "actions-pack": "pnpm run pack",
+    "actions-publish": "pnpm run release"
   },
   "devDependencies": {
     "@types/node": "<%= versions.TYPES_NODE %>",

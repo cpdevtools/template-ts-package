@@ -1,0 +1,18 @@
+name: Create pull request on version change
+
+on:
+  push:
+    branches:
+      - "main"
+      - "master"
+      - "v/*"
+
+jobs:
+  create_pr:
+    name: Create a version pull request if necessary
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Project
+        uses: actions/checkout@v<%= versions.GITHUB_ACTIONS_CHECKOUT %>
+
+      - uses: ./.github/actions/create-pull-request

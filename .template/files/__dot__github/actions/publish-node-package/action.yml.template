@@ -1,0 +1,60 @@
+name: "Publish npm module"
+description: "Publish the npm module"
+
+inputs:
+  nodeVersion:
+    description: "The version of NodeJs to install"
+    required: false
+    default: "v<%= versions.NODEJS %>"
+  toNpm:
+    description: "Publish to npm package registry"
+    required: false
+    default: false
+  toGithub:
+    description: "Publish to github package registry"
+    required: false
+    default: true
+  githubToken:
+    description: "Github Token"
+    required: false
+    default: ${{ github.token }}
+  npmToken:
+    description: "NPM Token"
+    required: false
+    default: ""
+
+runs:
+  using: "composite"
+  steps:
+    - if: ${{ inputs.toGithub == 'true' || inputs.toGithub == true}}
+      uses: actions/setup-node@v<%= versions.GITHUB_ACTIONS_CHECKOUT %>
+      with:
+        node-version: ${{ inputs.nodeVersion }}
+        cache: "pnpm"
+        cache-dependency-path: pnpm-lock.yaml
+        registry-url: https://npm.pkg.github.com/
+        always-auth: true
+        scope: ${{ github.repository_owner }}
+
+    - if: ${{ inputs.toGithub == 'true' || inputs.toGithub == true}}
+      env:
+        GITHUB_TOKEN: ${{ input.githubToken }}
+        NODE_AUTH_TOKEN: ${{ input.githubToken }}
+      run: pnpm run actions-publish
+      shell: bash
+
+    - if: ${{ inputs.toNpm == 'true' || inputs.toNpm == true}}
+      uses: actions/setup-node@v<%= versions.GITHUB_ACTIONS_CHECKOUT %>
+      with:
+        node-version: ${{ inputs.nodeVersion }}
+        cache: "pnpm"
+        cache-dependency-path: pnpm-lock.yaml
+        registry-url: "https://registry.npmjs.org"
+        always-auth: true
+        scope: ${{ github.repository_owner }}
+
+    - if: ${{ inputs.toNpm == 'true' || inputs.toNpm == true}}
+      env:
+        NODE_AUTH_TOKEN: ${{ input.npmToken }}
+      run: pnpm run actions-publish
+      shell: bash

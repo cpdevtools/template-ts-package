@@ -1,0 +1,26 @@
+name: Check pull request version
+
+on:
+  pull_request:
+    branches:
+      - "release/*"
+
+jobs:
+  check_version_valid_and_new:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Project
+        uses: actions/checkout@v<%= versions.GITHUB_ACTIONS_CHECKOUT %>
+
+      - name: Check Version
+        uses: ./.github/actions/check-version
+
+      - name: Install Node & Dependencies
+        uses: ./.github/actions/setup-node
+
+      - name: Build
+        uses: ./.github/actions/build
+
+      - name: Run Tests
+        uses: ./.github/actions/test
+
