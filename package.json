@@ -48,7 +48,8 @@
     "scripts": {
       "prepare": "run-s prepare:*",
       "prepare:build": "tsc -p .schematic/tsconfig.json",
-      "prepare:initialize": "schematics .:initialize --debug=false"
+      "prepare:initialize": "pnpm run schematics && pnpm i && git add --all && git commit -a -m \"template initialized\"",
+      "schematics": "schematics .:initialize --debug=false"
     }
   },
   "fromTemplate": [
