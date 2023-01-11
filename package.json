@@ -32,15 +32,15 @@
     "*": "prettier --write --ignore-unknown"
   },
   "devDependencies": {
-    "@angular-devkit/schematics": "15.0.4",
-    "@angular-devkit/schematics-cli": "15.0.4",
+    "@angular-devkit/schematics": "15.1.0",
+    "@angular-devkit/schematics-cli": "15.1.0",
     "@cpdevtools/lib-node-utilities": "0.4.49",
     "@types/node": "18.11.18",
     "@vercel/ncc": "0.36.0",
     "husky": "8.0.3",
     "lint-staged": "13.1.0",
     "npm-run-all2": "6.0.4",
-    "prettier": "2.8.1",
+    "prettier": "2.8.2",
     "type-fest": "3.5.1",
     "typescript": "4.9.4"
   },

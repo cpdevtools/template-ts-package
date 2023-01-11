@@ -1,34 +1,34 @@
 lockfileVersion: 5.4
 
 specifiers:
-  "@angular-devkit/schematics": 15.0.4
-  "@angular-devkit/schematics-cli": 15.0.4
+  "@angular-devkit/schematics": 15.1.0
+  "@angular-devkit/schematics-cli": 15.1.0
   "@cpdevtools/lib-node-utilities": 0.4.49
   "@types/node": 18.11.18
   "@vercel/ncc": 0.36.0
   husky: 8.0.3
   lint-staged: 13.1.0
   npm-run-all2: 6.0.4
-  prettier: 2.8.1
+  prettier: 2.8.2
   type-fest: 3.5.1
   typescript: 4.9.4
 
 devDependencies:
-  "@angular-devkit/schematics": 15.0.4
-  "@angular-devkit/schematics-cli": 15.0.4
+  "@angular-devkit/schematics": 15.1.0
+  "@angular-devkit/schematics-cli": 15.1.0
   "@cpdevtools/lib-node-utilities": 0.4.49
   "@types/node": 18.11.18
   "@vercel/ncc": 0.36.0
   husky: 8.0.3
   lint-staged: 13.1.0
   npm-run-all2: 6.0.4
-  prettier: 2.8.1
+  prettier: 2.8.2
   type-fest: 3.5.1
   typescript: 4.9.4
 
 packages:
-  /@angular-devkit/core/15.0.4:
-    resolution: { integrity: sha512-4ITpRAevd652SxB+qNesIQ9qfbm7wT5UBU5kJOPPwGL77I21g8CQpkmV1n5VSacPvC9Zbz90feOWexf7w7JzcA== }
+  /@angular-devkit/core/15.1.0:
+    resolution: { integrity: sha512-4FkoYgfuttp0ZD8NaVRr9Ya7kgSMkrXjJ5JIFlR4F49kTJXUpNB5xZeTS5CPh+wuP3o4IXpzn4A6M9vluJ5TFw== }
     engines: { node: ^14.20.0 || ^16.13.0 || >=18.10.0, npm: ^6.11.0 || ^7.5.6 || >=8.0.0, yarn: ">= 1.13.0" }
     peerDependencies:
       chokidar: ^3.5.2
@@ -36,20 +36,20 @@ packages:
       chokidar:
         optional: true
     dependencies:
-      ajv: 8.11.0
+      ajv: 8.12.0
       ajv-formats: 2.1.1
       jsonc-parser: 3.2.0
       rxjs: 6.6.7
       source-map: 0.7.4
     dev: true
 
-  /@angular-devkit/schematics-cli/15.0.4:
-    resolution: { integrity: sha512-rEzkpjiQcJqCgbZ1Ns8jn1BL4724jcj+YFS7Qw5d4v6yQYA8iSLz12HDTH0TiNEv7u5S55fYuRz2QreI0QUT8A== }
+  /@angular-devkit/schematics-cli/15.1.0:
+    resolution: { integrity: sha512-NBAI3ULGMw+dwEWZz4d3K4NpXjB4QBFFdhralmr8jp1Tkiuqomfq9zfwKSmq9pm82Tbkls5BwKPQpMtDHL4JWQ== }
     engines: { node: ^14.20.0 || ^16.13.0 || >=18.10.0, npm: ^6.11.0 || ^7.5.6 || >=8.0.0, yarn: ">= 1.13.0" }
     hasBin: true
     dependencies:
-      "@angular-devkit/core": 15.0.4
-      "@angular-devkit/schematics": 15.0.4
+      "@angular-devkit/core": 15.1.0
+      "@angular-devkit/schematics": 15.1.0
       ansi-colors: 4.1.3
       inquirer: 8.2.4
       symbol-observable: 4.0.0
@@ -58,13 +58,13 @@ packages:
       - chokidar
     dev: true
 
-  /@angular-devkit/schematics/15.0.4:
-    resolution: { integrity: sha512-/gXiLFS0+xFdx6wPoBpe/c6/K9I5edMpaASqPf4XheKtrsSvL+qTlIi3nsbfItzOiDXbaBmlbxGfkMHz/yg0Ig== }
+  /@angular-devkit/schematics/15.1.0:
+    resolution: { integrity: sha512-uCvxdhOZLRAjzUSPphVhAuAmUJ66FsQsyOD48gGr3Dpz0yNY570ill5CoBCMNbsP110p8E3O6OFXkbSxgDxEUA== }
     engines: { node: ^14.20.0 || ^16.13.0 || >=18.10.0, npm: ^6.11.0 || ^7.5.6 || >=8.0.0, yarn: ">= 1.13.0" }
     dependencies:
-      "@angular-devkit/core": 15.0.4
+      "@angular-devkit/core": 15.1.0
       jsonc-parser: 3.2.0
-      magic-string: 0.26.7
+      magic-string: 0.27.0
       ora: 5.4.1
       rxjs: 6.6.7
     transitivePeerDependencies:
@@ -380,11 +380,11 @@ packages:
       ajv:
         optional: true
     dependencies:
-      ajv: 8.11.0
+      ajv: 8.12.0
     dev: true
 
-  /ajv/8.11.0:
-    resolution: { integrity: sha512-wGgprdCvMalC0BztXvitD2hC04YffAvtsUn93JbGXYLAtCUO4xd17mCCZQxUOItiBwZvJScWo8NIvQMQ71rdpg== }
+  /ajv/8.12.0:
+    resolution: { integrity: sha512-sRu1kpcO9yLtYxBKvqfTeh9KzZEwO3STyX1HT+4CaDzC6HpTGYhIhPIzj9XuKU7KYDwnaeh5hcOwjy1QuJzBPA== }
     dependencies:
       fast-deep-equal: 3.1.3
       json-schema-traverse: 1.0.0
@@ -1176,11 +1176,11 @@ packages:
       yallist: 4.0.0
     dev: true
 
-  /magic-string/0.26.7:
-    resolution: { integrity: sha512-hX9XH3ziStPoPhJxLq1syWuZMxbDvGNbVchfrdCtanC7D13888bMFow61x8axrx+GfHLtVeAx2kxL7tTGRl+Ow== }
+  /magic-string/0.27.0:
+    resolution: { integrity: sha512-8UnnX2PeRAPZuN12svgR9j7M1uWMovg/CEnIwIG0LFkXSJJe4PdfUGiTGl8V9bsBHFUtfVINcSyYxd7q+kx9fA== }
     engines: { node: ">=12" }
     dependencies:
-      sourcemap-codec: 1.4.8
+      "@jridgewell/sourcemap-codec": 1.4.14
     dev: true
 
   /make-error/1.3.6:
@@ -1421,8 +1421,8 @@ packages:
     hasBin: true
     dev: true
 
-  /prettier/2.8.1:
-    resolution: { integrity: sha512-lqGoSJBQNJidqCHE80vqZJHWHRFoNYsSpP9AjFhlhi9ODCJA541svILes/+/1GM3VaL/abZi7cpFzOpdR9UPKg== }
+  /prettier/2.8.2:
+    resolution: { integrity: sha512-BtRV9BcncDyI2tsuS19zzhzoxD8Dh8LiCx7j7tHzrkz8GFXAexeWFdi22mjE1d16dftH2qNaytVxqiRTGlMfpw== }
     engines: { node: ">=10.13.0" }
     hasBin: true
     dev: true
@@ -1627,11 +1627,6 @@ packages:
   /source-map/0.7.4:
     resolution: { integrity: sha512-l3BikUxvPOcn5E74dZiq5BGsTb5yEwhaTSzccU6t4sDOH8NWJCstKO5QT2CvtFoK6F0saL7p9xHAqHOlCPJygA== }
     engines: { node: ">= 8" }
-    dev: true
-
-  /sourcemap-codec/1.4.8:
-    resolution: { integrity: sha512-9NykojV5Uih4lgo5So5dtw+f0JgJX30KCNI8gwhz2J9A15wD0Ml6tjHKwf6fTSa6fAdVBdZeNOs9eJ71qCk8vA== }
-    deprecated: Please use @jridgewell/sourcemap-codec instead
     dev: true
 
   /spdx-correct/3.1.1:
