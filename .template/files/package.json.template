@@ -1,0 +1,60 @@
+{
+  "name": "<%= package.name %>",
+  "version": "0.0.0-dev.0",
+  "repository": "<%= package.repository %>",
+  "typings": "./dist/index.d.ts",
+  "main": "./dist/index.js",
+  "engines": {
+    "node": ">=14.16"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "lint-staged": {
+    "*": "prettier --write --ignore-unknown"
+  },
+  "scripts": {
+    "prepare": "run-s prepare:*",
+    "prepare:clean-tags": "pnpm run clean-tags",
+    "prepare:husky": "husky install",
+    "prepare:build": "pnpm run build",
+    "prepare:link": "cd ./dist && pnpm unlink && pnpm link --global",
+    "pre-commit": "run-s pre-commit:*",
+    "pre-commit:build": "pnpm run build",
+    "pre-commit:tags": "pnpm run clean-tags",
+    "clean-tags": "git tag | xargs git tag -d",
+    "build": "run-s build:*",
+    "build:ts": "tsc -p tsconfig.json",
+    "build:copy-package": "ts-node .scripts/copy-package.ts",
+    "start": "tsc -w -p .schematic/tsconfig.json",
+    "fix": "run-s fix:*",
+    "fix:prettier": "prettier --write --ignore-unknown .",
+    "reset-hard": "run-s reset-hard:*",
+    "reset-hard:git-clean": "git clean -dfx && git reset --hard",
+    "reset-hard:install": "pnpm install",
+    "pack": "run-s pack:*",
+    "pack:build": "pnpm run build",
+    "pack:npm-pack": "cd dist && mkdir ./pack && pnpm pack --pack-destination ./pack",
+    "release": "run-s release:*",
+    "release:publish": "pnpm publish ./dist --access public --publish-branch 'release/latest'",
+    "actions-test": "pnpm run test",
+    "actions-build": "pnpm run build",
+    "actions-pack": "pnpm run test",
+    "actions-publish": "pnpm run build"
+  },
+  "devDependencies": {
+    "@types/node": "<%= versions.TYPES_NODE %>",
+    "husky": "<%= versions.HUSKY %>",
+    "lint-staged": "<%= versions.LINT_STAGED %>",
+    "npm-run-all2": "<%= versions.NPM_RUN_ALL_2 %>",
+    "prettier": "<%= versions.PRETTIER %>"
+  },
+  "dependencies": {
+    "@cpdevtools/lib-node-utilities": "<%= versions.CPDEVTOOLS_NODE_UTILITIES %>",
+    "ts-node": "<%= versions.TS_NODE %>",
+    "tslib": "<%= versions.TSLIB %>",
+    "type-fest": "<%= versions.TYPE_FEST %>",
+    "typescript": "<%= versions.TYPESCRIPT %>"
+  },
+  "fromTemplate": <%= strings.json(package.fromTemplate, 2) %>
+}

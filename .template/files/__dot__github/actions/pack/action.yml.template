@@ -1,0 +1,8 @@
+name: "Pack npm module"
+description: "Package the npm module to prepare it for publishing"
+
+runs:
+  using: "composite"
+  steps:
+    - run: pnpm run actions-pack
+      shell: bash

@@ -1,0 +1,10 @@
+name: "Create Release Pull Request"
+description: "Create Pull Request if required"
+
+runs:
+  using: "composite"
+  steps:
+    - name: Auto Create
+      uses: cpdevtools/action-versions@v<%= versions.CPDEVTOOLS_ACTION_VERSIONS %>
+      with:
+        autoCreatePullRequest: true

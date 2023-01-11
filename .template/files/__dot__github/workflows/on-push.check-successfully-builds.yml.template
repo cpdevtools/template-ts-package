@@ -1,0 +1,26 @@
+name: Builds Successfully
+
+on:
+  push:
+    branches:
+      - "*"
+      - "*/*"
+      - "!release/*"
+
+
+jobs:
+  check_builds:
+    name: Test if the project builds successfully
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Project
+        uses: actions/checkout@v<%= versions.GITHUB_ACTIONS_CHECKOUT %>
+
+      - name: Install Node & Dependencies
+        uses: ./.github/actions/setup-node
+
+      - name: Build
+        uses: ./.github/actions/build
+
+      - name: Run Tests
+        uses: ./.github/actions/test

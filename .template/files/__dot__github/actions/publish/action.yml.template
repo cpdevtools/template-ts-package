@@ -1,0 +1,8 @@
+name: "Publish npm module"
+description: "Publish the npm module"
+
+runs:
+  using: "composite"
+  steps:
+    - run: pnpm run actions-publish
+      shell: bash
