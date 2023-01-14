@@ -18,7 +18,7 @@ runs:
 
     - name: Create Release
       id: create_release
-      uses: actions/create-release@v<%= versions.GITHUB_ACTIONS_CREATE_RELEASE %>
+      uses: actions/create-release@v<%= versions.NCIPOLLO_CREATE_RELEASE %>
       env:
         GITHUB_TOKEN: ${{ inputs.githubToken }}
       with:
