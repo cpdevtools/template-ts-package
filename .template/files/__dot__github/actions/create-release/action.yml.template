@@ -20,7 +20,7 @@ runs:
       id: create_release
       uses: actions/create-release@v<%= versions.GITHUB_ACTIONS_CREATE_RELEASE %>
       env:
-        GITHUB_TOKEN: ${{ input.githubToken }}
+        GITHUB_TOKEN: ${{ inputs.githubToken }}
       with:
         tag_name: v${{ steps.version.outputs.targetVersion }}
         release_name: Release v${{ steps.version.outputs.targetVersion }}

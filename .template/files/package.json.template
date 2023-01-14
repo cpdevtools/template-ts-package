@@ -2,8 +2,8 @@
   "name": "<%= package.name %>",
   "version": "0.0.0-dev.0",
   "repository": "<%= package.repository %>",
-  "typings": "./dist/index.d.ts",
-  "main": "./dist/index.js",
+  "typings": "./index.d.ts",
+  "main": "./index.js",
   "engines": {
     "node": ">=14.16"
   },
@@ -26,6 +26,7 @@
     "build": "run-s build:*",
     "build:ts": "tsc -p tsconfig.json",
     "build:copy-package": "ts-node .scripts/copy-package.ts",
+    "test": "echo \"No tests to run.\"",
     "start": "tsc -w -p .schematic/tsconfig.json",
     "link": "cd ./dist && pnpm unlink && pnpm link --global",
     "fix": "run-s fix:*",
@@ -36,7 +37,7 @@
     "pack": "run-s pack:*",
     "pack:npm-pack": "cd dist && mkdir ./pack && pnpm pack --pack-destination ./pack",
     "release": "run-s release:*",
-    "release:publish": "pnpm publish ./dist --access public --publish-branch 'release/latest'",
+    "release:publish": "pnpm publish ./dist/pack/*.tgz --access public --publish-branch 'release/latest'",
     "actions-test": "pnpm run test",
     "actions-build": "pnpm run build",
     "actions-pack": "pnpm run pack",
