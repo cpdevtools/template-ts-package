@@ -32,7 +32,7 @@
     "*": "prettier --write --ignore-unknown"
   },
   "devDependencies": {
-    "@angular-devkit/schematics": "15.1.0",
+    "@angular-devkit/schematics": "15.1.4",
     "@angular-devkit/schematics-cli": "15.1.0",
     "@cpdevtools/lib-node-utilities": "0.4.49",
     "@types/node": "18.11.18",
