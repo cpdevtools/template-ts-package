@@ -33,7 +33,7 @@
   },
   "devDependencies": {
     "@angular-devkit/schematics": "15.1.0",
-    "@angular-devkit/schematics-cli": "15.1.0",
+    "@angular-devkit/schematics-cli": "15.2.4",
     "@cpdevtools/lib-node-utilities": "0.4.49",
     "@types/node": "18.11.18",
     "@vercel/ncc": "0.36.0",
