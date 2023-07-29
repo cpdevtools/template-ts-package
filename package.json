@@ -1,5 +1,5 @@
 {
-  "private": true,
+  "private": "true",
   "name": "@cpdevtools/template-ts-package",
   "version": "0.0.0-dev.0",
   "repository": "https://github.com/cpdevtools/template-ts-package",
@@ -48,7 +48,7 @@
     "scripts": {
       "prepare": "run-s prepare:*",
       "prepare:build": "tsc -p .schematic/tsconfig.json",
-      "prepare:initialize": "pnpm run schematics && pnpm i && git add --all && git commit -a -m \"template initialized\"",
+      "prepare:initialize": "pnpm run schematics && pnpm i && git add --all && github",
       "schematics": "schematics .:initialize --debug=false"
     }
   },
